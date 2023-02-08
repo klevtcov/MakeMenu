@@ -1,22 +1,37 @@
 package main
 
 import (
-	"encoding/json"
+	// "context"
 	"fmt"
+	"github.com/klevtcov/makemenu_go/storage/sqlite"
+	"log"
 )
 
-type Ingridients struct {
-	Proteins
-}
-
-// someStruct := SomeStruct{}  // Read errors caught by unmarshal
-// fileBytes, _ := os.ReadFile(filename)
-// err := json.Unmarshal(fileBytes, spec)
+const (
+	tgBotHost = "api.telegram.org"
+	// storagePath = "storage"
+	sqliteStorage = "data/sqlite/storage.db"
+	batchSize     = 100
+)
 
 func main() {
 
-	// var m Message
-	// err := json.Unmarshal(b, &m)
+	storage, err := sqlite.New(sqliteStorage)
+	if err != nil {
+		log.Fatal("can't connect to storage: ", err)
+	}
+	// if err := storage.Init(context.TODO()); err != nil {
+	// 	log.Fatal("can't init storage: ", err)
+	// }
+
+	// eventsProccessor := telegram.New(tgClient.New(tgBotHost, mustToken()), storage)
+
+	// log.Print("service started")
+
+	// consumer := event_consumer.New(eventsProccessor, eventsProccessor, batchSize)
+	// if err := consumer.Start(); err != nil {
+	// 	log.Fatal("service is stopped", err)
+	// }
 
 	fmt.Println("app started")
 }
