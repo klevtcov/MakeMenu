@@ -28,16 +28,16 @@ func New(path string) (*Storage, error) {
 }
 
 // PickRandom picks random page from storage.
-func (s *Storage) PickRandom(ctx context.Context) (*storage.Dish, error) {
-	proteinSelect := `SELECT name FROM proteins ORDER BY RANDOM() LIMIT 1`
-	carbSelect := `SELECT name FROM carbs ORDER BY RANDOM() LIMIT 1`
-	fatSelect := `SELECT name FROM fats ORDER BY RANDOM() LIMIT 1`
-	fiberSelect := `SELECT name FROM fibers ORDER BY RANDOM() LIMIT 1`
+func (s *Storage) PickRandom(ctx context.Context, q int) (*storage.Dish, error) {
+	proteinSelect := `SELECT name FROM proteins ORDER BY RANDOM() LIMIT ?`
+	carbSelect := `SELECT name FROM carbs ORDER BY RANDOM() LIMIT ?`
+	fatSelect := `SELECT name FROM fats ORDER BY RANDOM() LIMIT ?`
+	fiberSelect := `SELECT name FROM fibers ORDER BY RANDOM() LIMIT ?`
 
-	var protein, carb, fat, fiber string
+	var protein, carb, fat, fiber []string
 
-	func pickIngridient (ing string) 
-	err := s.db.QueryRowContext(ctx, proteinSelect).Scan(&protein)
+	// func pickIngridient (ing string)
+	err := s.db.QueryRowContext(ctx, proteinSelect, q).Scan(&protein)
 	if err == sql.ErrNoRows {
 		return nil, storage.ErrNoIngridients
 	}

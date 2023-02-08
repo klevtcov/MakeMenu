@@ -9,14 +9,14 @@ import (
 )
 
 type Storage interface {
-	PickRandom(ctx context.Context) (*Dish, error)
+	PickRandom(ctx context.Context, Quantity int) (*Dish, error)
 }
 
 var ErrNoIngridients = errors.New("no ingredients available")
 
 type Dish struct {
-	Proteins string
-	Carbs    string
-	Fats     string
-	Fibers   string
+	Proteins []string
+	Carbs    []string
+	Fats     []string
+	Fibers   []string
 }
