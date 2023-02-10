@@ -53,11 +53,27 @@ func (s *Storage) PickRandom(ctx context.Context, q int) (*storage.Dish, error) 
 	}, nil
 }
 
-// func (s *Storage) Init(ctx context.Context) error {
-// 	q := `CREATE TABLE IF NOT EXISTS pages (url TEXT, user_name TEXT)`
-// 	_, err := s.db.ExecContext(ctx, q)
-// 	if err != nil {
-// 		return fmt.Errorf("can't create table: %w", err)
-// 	}
-// 	return nil
+//
+// Работающий код, переписать с него запросы
+//
+// proteinSelect := `SELECT name FROM proteins ORDER BY RANDOM() LIMIT ?`
+
+// var protein []string
+// rows, err := db.Query(proteinSelect, 2)
+// if err != nil {
+// 	fmt.Println("Не могу извлечь строки из базы")
 // }
+
+// // Loop through rows, using Scan to assign column data to struct fields.
+// for rows.Next() {
+// 	var ingridient string
+// 	if err := rows.Scan(&ingridient); err != nil {
+// 		fmt.Println("Не могу считать следующую строку")
+// 	}
+// 	protein = append(protein, ingridient)
+// }
+// if err = rows.Err(); err != nil {
+// 	fmt.Println("Ошибка строк")
+// }
+
+// fmt.Println(protein)
