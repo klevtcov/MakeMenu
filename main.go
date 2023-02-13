@@ -20,11 +20,8 @@ func main() {
 	if err != nil {
 		log.Fatal("can't connect to storage: ", err)
 	}
-	// if err := storage.Init(context.TODO()); err != nil {
-	// 	log.Fatal("can't init storage: ", err)
-	// }
 
-	// eventsProccessor := telegram.New(tgClient.New(tgBotHost, mustToken()), storage)
+	// eventsProccessor := telegram.New(tgClient.New(tgBotHost, token), storage)
 
 	// log.Print("service started")
 
