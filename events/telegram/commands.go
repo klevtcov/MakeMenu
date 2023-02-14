@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"log"
-	"net/url"
+	// "net/url"
 	"strings"
 
 	e "github.com/klevtcov/makemenu_go/lib"
@@ -86,16 +86,16 @@ func (p *Processor) sendHello(chatID int) error {
 	return p.tg.SendMessage(chatID, msgHello)
 }
 
-func isAddCmd(text string) bool {
-	return isUrl(text)
-}
+// func isAddCmd(text string) bool {
+// 	return isUrl(text)
+// }
 
-func isUrl(text string) bool {
-	// не распарсит ссылки без протокола, т.е. вида ya.ru
-	u, err := url.Parse(text)
+// func isUrl(text string) bool {
+// 	// не распарсит ссылки без протокола, т.е. вида ya.ru
+// 	u, err := url.Parse(text)
 
-	return err == nil && u.Host != ""
-}
+// 	return err == nil && u.Host != ""
+// }
 
 // func (p *Processor) savePage(chatID int, pageURL string, username string) (err error) {
 // 	// в возврате ошибка именованная, т.к. ожидается в разных местах
