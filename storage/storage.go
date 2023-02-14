@@ -26,8 +26,10 @@ type Plate struct {
 	Plate []string
 }
 
-// func takeDish(d Dishes) {
-// 	for i := 0; i < len(d.Proteins); i++ {
-// 		fmt.Println(d.Proteins[i], d.Carbs[i], d.Fats[i], d.Fibers[i])
-// 	}
-// }
+func (d *Dishes) TakeDish() string {
+	var result string
+	for i := 0; i < len(d.Proteins); i++ {
+		result += d.Proteins[i] + d.Carbs[i] + d.Fats[i] + d.Fibers[i] + "\n"
+	}
+	return result
+}
