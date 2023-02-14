@@ -29,7 +29,7 @@ type Plate struct {
 func (d *Dishes) TakeDish() string {
 	var result string
 	for i := 0; i < len(d.Proteins); i++ {
-		result += d.Proteins[i] + d.Carbs[i] + d.Fats[i] + d.Fibers[i] + "\n"
+		result += "🍲 " + d.Proteins[i] + " " + d.Carbs[i] + " " + d.Fats[i] + " " + d.Fibers[i] + "\n"
 	}
 	return result
 }

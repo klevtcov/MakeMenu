@@ -13,7 +13,7 @@ import (
 const (
 	tgBotHost = "api.telegram.org"
 	// storagePath = "storage"
-	sqliteStorage = "data/sqlite/storage.db"
+	sqliteStorage = "data/sqlite/makemenu.db"
 	batchSize     = 100
 )
 

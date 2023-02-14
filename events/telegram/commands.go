@@ -35,22 +35,32 @@ func (p *Processor) doCmd(text string, chatID int, username string) error {
 
 	switch text {
 	case RndCmd:
-		return p.sendRandom(chatID, username)
+		return p.sendRandom(chatID, 1)
 	case HelpCmd:
 		return p.sendHelp(chatID)
 	case StartCmd:
 		return p.sendHello(chatID)
+	case "1":
+		return p.sendRandom(chatID, 1)
+	case "2":
+		return p.sendRandom(chatID, 2)
+	case "3":
+		return p.sendRandom(chatID, 3)
+	case "4":
+		return p.sendRandom(chatID, 4)
+	case "5":
+		return p.sendRandom(chatID, 5)
 	default:
 		return p.tg.SendMessage(chatID, msgUnknownCommand)
 	}
 
 }
 
-func (p *Processor) sendRandom(chatID int, username string) (err error) {
+func (p *Processor) sendRandom(chatID int, quantity int) (err error) {
 	defer func() { err = e.WrapIfErr("can't do command: can't send random", err) }()
 
 	// пытаемся получить случайное блюдо
-	dish, err := p.storage.PickRandomDish(context.Background(), 1)
+	dish, err := p.storage.PickRandomDish(context.Background(), quantity)
 	if err != nil && !errors.Is(err, storage.ErrNoIngridients) {
 		return err
 	}
