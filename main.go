@@ -1,13 +1,16 @@
 package main
 
 import (
-	// "context"
-	"fmt"
+	// "fmt"
+	"log"
+	"os"
+	"os/signal"
+	"syscall"
+
 	tgClient "github.com/klevtcov/makemenu_go/clients/telegram"
 	event_consumer "github.com/klevtcov/makemenu_go/consumer/event-consumer"
 	"github.com/klevtcov/makemenu_go/events/telegram"
 	"github.com/klevtcov/makemenu_go/storage/sqlite"
-	"log"
 )
 
 const (
@@ -24,15 +27,28 @@ func main() {
 		log.Fatal("can't connect to storage: ", err)
 	}
 
-	eventsProccessor := telegram.New(tgClient.New(tgBotHost, token), storage)
+	eventsProccessor := telegram.New(tgClient.New(tgBotHost, tgToken), storage)
 
-	fmt.Println("app started")
-
-	// log.Print("service started")
+	// fmt.Println("app started")
 
 	consumer := event_consumer.New(eventsProccessor, eventsProccessor, batchSize)
-	if err := consumer.Start(); err != nil {
-		log.Fatal("service is stopped", err)
+
+	go func() {
+		if err := consumer.Start(); err != nil {
+			log.Fatal("service is stopped", err)
+		}
+	}()
+
+	log.Print("service started")
+
+	// Ожидаем сигнала на закрытие приложения
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
+	<-quit
+
+	if err := sqlite.Shutdown(storage); err != nil {
+		log.Fatalf("error occured on db connection close: %s", err.Error())
 	}
 
+	log.Print("service stoped")
 }

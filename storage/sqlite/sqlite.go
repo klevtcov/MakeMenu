@@ -27,6 +27,13 @@ func New(path string) (*Storage, error) {
 	return &Storage{db: db}, nil
 }
 
+func Shutdown(s *Storage) error {
+	if err := s.db.Close(); err != nil {
+		return fmt.Errorf("can't close connection to database: %w", err)
+	}
+	return nil
+}
+
 // Выбор из базы заданного количества случайных ингридиентов
 func (s *Storage) PickRandomIngridient(ctx context.Context, ingridient string, quantity int) ([]string, error) {
 	q := fmt.Sprintf("SELECT name FROM %s ORDER BY RANDOM() LIMIT ?", ingridient)
