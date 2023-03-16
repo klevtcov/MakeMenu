@@ -27,6 +27,7 @@ func New(path string) (*Storage, error) {
 	return &Storage{db: db}, nil
 }
 
+// Остановка базы, закрытие соединения
 func Shutdown(s *Storage) error {
 	if err := s.db.Close(); err != nil {
 		return fmt.Errorf("can't close connection to database: %w", err)
