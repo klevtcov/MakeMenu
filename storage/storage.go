@@ -11,6 +11,7 @@ import (
 type Storage interface {
 	PickRandomDish(ctx context.Context, quantity int) (*Dishes, error)
 	PickRandomIngridient(ctx context.Context, ingridient string, quantity int) ([]string, error)
+	ShowAllIngridients(ctx context.Context, ingridient string) ([]string, error)
 }
 
 var ErrNoIngridients = errors.New("no ingredients available")

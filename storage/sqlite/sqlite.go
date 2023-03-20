@@ -96,3 +96,8 @@ func (s *Storage) PickRandomDish(ctx context.Context, quantity int) (*storage.Di
 		Fibers:   fiber,
 	}, nil
 }
+
+// отображение всех доступных ингридиентов
+func (s *Storage) ShowAllIngridients(ctx context.Context, ingridient string) ([]string, error) {
+	return []string{"hello"}, nil
+}
