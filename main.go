@@ -50,5 +50,5 @@ func main() {
 		log.Fatalf("error occured on db connection close: %s", err.Error())
 	}
 
-	log.Print("service stoped")
+	log.Print("service stopped")
 }
