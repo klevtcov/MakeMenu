@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	tgClient "github.com/klevtcov/makemenu_go/clients/telegram"
-	event_consumer "github.com/klevtcov/makemenu_go/consumer/event-consumer"
+	eventConsumer "github.com/klevtcov/makemenu_go/consumer/event-consumer"
 	"github.com/klevtcov/makemenu_go/events/telegram"
 	"github.com/klevtcov/makemenu_go/storage/sqlite"
 )
@@ -31,7 +31,7 @@ func main() {
 
 	// fmt.Println("app started")
 
-	consumer := event_consumer.New(eventsProccessor, eventsProccessor, batchSize)
+	consumer := eventConsumer.New(eventsProccessor, eventsProccessor, batchSize)
 
 	go func() {
 		if err := consumer.Start(); err != nil {
