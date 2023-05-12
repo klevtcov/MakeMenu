@@ -8,6 +8,7 @@ import (
 	// "io"
 )
 
+//go:generate mockery --name Storage
 type Storage interface {
 	PickRandomDish(ctx context.Context, quantity int) (*Dishes, error)
 	PickRandomIngridient(ctx context.Context, ingridient string, quantity int) ([]string, error)
