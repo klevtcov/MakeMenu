@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"context"
 	"github.com/klevtcov/makemenu_go/storage/mocks"
 	"testing"
 )
@@ -23,7 +24,7 @@ func TestDishes_TakeDish(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			proteins := mocks.Storage{t}
+			proteins, err := mocks.Storage.PickRandomIngridient(context.Context(), "protein", 1)
 			d := &Dishes{
 				Proteins: tt.fields.Proteins,
 				Carbs:    tt.fields.Carbs,
