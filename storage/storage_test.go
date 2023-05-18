@@ -25,7 +25,7 @@ func TestDishes_TakeDish(t *testing.T) {
 			//proteins, err := mocks.Storage.PickRandomIngridient(context.Context(), "protein", 1)
 			//carbs, err
 			//fats, err
-			//fibers
+			//fibers, err
 			d := &Dishes{
 				Proteins: tt.fields.Proteins,
 				Carbs:    tt.fields.Carbs,
