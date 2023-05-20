@@ -23,7 +23,7 @@ func TestDishes_TakeDish(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			//proteins, err := mocks.Storage.PickRandomIngridient(context.Context(), "protein", 1)
-			//carbs, err :=
+			//carbs, err := mocks.
 			//fats, err :=
 			//fibers, err :=
 			d := &Dishes{
